@@ -1,54 +1,57 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
+int spinner (int random_number)
+{
 
-
-
-// datatype functionname(datatype parameter1, datatype parameter2, datatype parameter3) {
-//     // code
-//     return value;
-// }
-
-void fizzbuzz(int num){
-
-    if (num == 0)
-    {
-        printf("Exiting the program\n");
-        // break;
-    }
-
-    if (num % 3 == 0 && num % 5 == 0) // 15
-    {
-        printf("%d: FizzBUzz\n", num);
-    }
-    else if (num % 3 == 0) // 9
-    {
-        printf("%d: Fizz\n", num);
-    }
-
-    else if (num % 5 == 0) // 10
-    {
-        printf("%d: Buzz\n", num);
-    }
-    else
-    {
-        printf("The number %d is not a fizzbuzz \n", num);
-    }
-
+return 0;
 }
 
 
 int main()
 {
 
-    int num = -1;
-    // sum = sum + 10;
+    const int quarters = 4;
+    int total_quaters = 20 * quarters;
+    int bet;
+    int random_number;
+    int game_over = 0;
+    srand(time(NULL));
 
-while (num != 0) {
+    printf("Welcome to the Betting game\n");
+    printf("You have $%d quarters.\n", total_quaters/quarters);
 
-    printf("Enter a Number: ");
-    scanf("%d", &num);
-    fizzbuzz(num);
-    
-}
+
+    while(!game_over){
+    printf("You have %d quaters ($%d)\n", total_quaters, total_quaters/quarters);
+    printf("Enter the number of quaters you want to bet (or 0 to cash out): ");
+    scanf("%d", &bet);  
+
+    if (bet == 0)
+    {
+        printf("You have cashed out $%d\n", total_quaters/quarters); // Ensure rewording of the output
+        game_over = 1;
+        return 0;
+    }
+    else if (bet > total_quaters)
+    {
+        printf("You don't have enough quaters to bet\n"); // Ensure rewording of the output
+        game_over = 1;
+        return 0;
+    }
+    else
+    {
+        total_quaters -= bet;
+        printf("You have %d quaters left ($%d)\n", total_quaters, total_quaters/quarters);
+        random_number = rand() % 100 + 1;
+
+        printf("Reel stopped on the number %d\n", random_number);
+
+        int new_bet = spinner(random_number);
+
+    }
+    }
+
     return 0;
-}
+    }
